@@ -34,11 +34,10 @@
 .storefront-border {
   border: 2px solid #dee2e6;
   border-radius: 1.25rem;
-  background: #535353;
+  background: #fff;
   box-shadow: 0 4px 24px rgba(0,0,0,0.04);
-  max-width: 2100px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem !important;
 }
 
 .product-card {
