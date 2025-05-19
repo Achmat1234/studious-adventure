@@ -117,7 +117,36 @@
     background: #0b5ed7;
 }
 
-
+/* --- Storefront Product Card Styles --- */
+.product-card {
+    border: 1px solid #e3e3e3;
+    border-radius: 0.75rem;
+    transition: box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    background: #fff;
+}
+.product-card:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    border-color: #b6d4fe;
+}
+.product-card .card-img-top {
+    height: 180px;
+    object-fit: cover;
+    border-top-left-radius: 0.75rem;
+    border-top-right-radius: 0.75rem;
+}
+.product-card .price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #0d6efd;
+}
+.product-card .btn-primary {
+    background: linear-gradient(90deg, #0d6efd 60%, #6610f2 100%);
+    border: none;
+}
+.product-card .btn-primary:hover {
+    background: #0b5ed7;
+}
 *,
 *::before,
 *::after {
