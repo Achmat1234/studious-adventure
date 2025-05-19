@@ -79,6 +79,41 @@
   --bs-highlight-bg: #fff3cd;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: var(--bs-body-font-family);
+  font-size: var(--bs-body-font-size);
+  font-weight: var(--bs-body-font-weight);
+  line-height: var(--bs-body-line-height);
+  color: var(--bs-body-color);
+  text-align: var(--bs-body-text-align);
+  background-color: var(--bs-body-bg);
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+
+
+/* --- Storefront Border Wrapper --- */
+.storefront-border {
+    border: 2px solid #dee2e6;
+    border-radius: 1.25rem;
+    background: #fff;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+    max-width: 1200px;
+}
 /* --- Storefront Product Card Styles --- */
 .product-card {
     border: 1px solid #e3e3e3;
@@ -109,30 +144,7 @@
 .product-card .btn-primary:hover {
     background: #0b5ed7;
 }
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  :root {
-    scroll-behavior: smooth;
-  }
-}
-
-body {
-  margin: 0;
-  font-family: var(--bs-body-font-family);
-  font-size: var(--bs-body-font-size);
-  font-weight: var(--bs-body-font-weight);
-  line-height: var(--bs-body-line-height);
-  color: var(--bs-body-color);
-  text-align: var(--bs-body-text-align);
-  background-color: var(--bs-body-bg);
-  -webkit-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
 
 hr {
   margin: 1rem 0;
