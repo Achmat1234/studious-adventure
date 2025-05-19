@@ -78,7 +78,7 @@
   --bs-code-color: #d63384;
   --bs-highlight-bg: #fff3cd;
 }
-{--#{$prefix}card-spacer-y: #{$card-spacer-y};
+:container {--#{$prefix}card-spacer-y: #{$card-spacer-y};
 --#{$prefix}card-spacer-x: #{$card-spacer-x};
 --#{$prefix}card-title-spacer-y: #{$card-title-spacer-y};
 --#{$prefix}card-title-color: #{$card-title-color};
