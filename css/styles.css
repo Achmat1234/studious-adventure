@@ -84,7 +84,14 @@
     border-radius: 1.25rem;
     background: #fff;
     box-shadow: 0 4px 24px rgba(0,0,0,0.04);
-    max-width: 1200px;
+    max-width: 100%;           /* Changed from 1200px to 100% */
+    margin-left: 0.5rem;       /* Add small margin to the left */
+    margin-right: 0.5rem;      /* Add small margin to the right */
+    /* Remove mx-auto if you want it flush left, or keep for center */
+    /* You can adjust the .container padding if you want it even closer */
+    /* Example: */
+    /* padding-left: 0.5rem; */
+    /* padding-right: 0.5rem; */
 }
 /* --- Storefront Product Card Styles --- */
 .product-card {
