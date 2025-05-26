@@ -14,33 +14,35 @@
         <link href="css/styles.css" rel="stylesheet" />
     </head>
     <body class="d-flex flex-column h-100">
+        <!-- === Cart Icon and Cart Panel (START) === -->
         <!-- Cart Icon (top right) -->
-<div id="cart-icon-container" style="position: fixed; top: 24px; right: 32px; z-index: 1050;">
-  <button id="cart-icon-btn" aria-label="View cart" style="background: none; border: none; position: relative;">
-    <!-- Cart SVG Icon -->
-    <svg width="32" height="32" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
-      <path d="M0 1.5A.5.5 0 0 1 .5 1h1a.5.5 0 0 1 .485.379L2.89 6H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 15H4a.5.5 0 0 1-.491-.408L1.01 2H.5a.5.5 0 0 1-.5-.5zM3.14 7l1.25 6h7.22l1.25-6H3.14z"/>
-    </svg>
-    <span id="cart-count-badge" style="position: absolute; top: -8px; right: -8px; background: #dc3545; color: #fff; border-radius: 50%; padding: 2px 7px; font-size: 0.9rem; font-weight: bold;">0</span>
-  </button>
-</div>
+        <div id="cart-icon-container" style="position: fixed; top: 24px; right: 32px; z-index: 1050;">
+            <button id="cart-icon-btn" aria-label="View cart" style="background: none; border: none; position: relative;">
+                <!-- Cart SVG Icon -->
+                <svg width="32" height="32" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                    <path d="M0 1.5A.5.5 0 0 1 .5 1h1a.5.5 0 0 1 .485.379L2.89 6H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 15H4a.5.5 0 0 1-.491-.408L1.01 2H.5a.5.5 0 0 1-.5-.5zM3.14 7l1.25 6h7.22l1.25-6H3.14z"/>
+                </svg>
+                <span id="cart-count-badge" style="position: absolute; top: -8px; right: -8px; background: #dc3545; color: #fff; border-radius: 50%; padding: 2px 7px; font-size: 0.9rem; font-weight: bold;">0</span>
+            </button>
+        </div>
+        <!-- Cart Panel (slide-in) -->
+        <div id="cart-panel" aria-label="Shopping cart" tabindex="-1">
+            <div class="cart-panel-header">
+                <h5>Shopping Cart</h5>
+                <button id="cart-close-btn" aria-label="Close cart">&times;</button>
+            </div>
+            <div id="cart-items-list"></div>
+            <div class="cart-panel-footer">
+                <div class="cart-total-row">
+                    <span>Total:</span>
+                    <span id="cart-total">$0.00</span>
+                </div>
+                <button class="btn btn-success w-100 mt-2" id="checkout-btn">Checkout</button>
+            </div>
+        </div>
+        <div id="cart-panel-backdrop"></div>
+        <!-- === Cart Icon and Cart Panel (END) === -->
 
-<!-- Cart Panel (slide-in) -->
-<div id="cart-panel" aria-label="Shopping cart" tabindex="-1">
-  <div class="cart-panel-header">
-    <h5>Shopping Cart</h5>
-    <button id="cart-close-btn" aria-label="Close cart">&times;</button>
-  </div>
-  <div id="cart-items-list"></div>
-  <div class="cart-panel-footer">
-    <div class="cart-total-row">
-      <span>Total:</span>
-      <span id="cart-total">$0.00</span>
-    </div>
-    <button class="btn btn-success w-100 mt-2" id="checkout-btn">Checkout</button>
-  </div>
-</div>
-<div id="cart-panel-backdrop"></div>
         <main class="flex-shrink-0">
             <!-- Navigation-->
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -179,11 +181,10 @@
                     </div>
                 </div>
             </footer>
-
-            <!-- Bootstrap core JS-->
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-            <!-- Core theme JS-->
-            <script src="js/cart.js"></script>
         </main>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Cart system JS (must be after all HTML) -->
+        <script src="js/cart.js"></script>
     </body>
 </html>
