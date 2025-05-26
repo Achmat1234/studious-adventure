@@ -1,59 +1,6 @@
-// Initialize cart array
-let cart = [];
-
-// Load cart from local storage
-function loadCart() {
-    const storedCart = localStorage.getItem('cart');
-    if (storedCart) {
-        cart = JSON.parse(storedCart);
-    }
-}
-
-// Save cart to local storage
-function saveCart() {
-    localStorage.setItem('cart', JSON.stringify(cart));
-}
-
-// Add item to cart
-function addToCart(product) {
-    cart.push(product);
-    saveCart();
-    alert(`${product.name} has been added to your cart!`);
-}
-
-// Remove item from cart
-function removeFromCart(productId) {
-    cart = cart.filter(item => item.id !== productId);
-    saveCart();
-}
-
-// Get current cart
-function getCart() {
-    return cart;
-}
-
-// Event listener for "Add to Cart" buttons
-document.addEventListener('DOMContentLoaded', () => {
-    loadCart();
-    const buttons = document.querySelectorAll('.btn-primary');
-    buttons.forEach(button => {
-        button.addEventListener('click', (event) => {
-            const productCard = event.target.closest('.product-card');
-            const product = {
-                id: productCard.querySelector('.card-title').innerText,
-                name: productCard.querySelector('.card-title').innerText,
-                price: productCard.querySelector('.price').innerText,
-                image: productCard.querySelector('img').src
-            };
-            addToCart(product);
-        });
-    });
-});
-
 // --- Cart System for Storefront ---
 // Language: JavaScript (ES6)
 
-// --- Cart Data Model ---
 const CART_KEY = 'storefront_cart';
 
 // Load cart from localStorage or start empty
@@ -75,8 +22,6 @@ function findCartItem(cart, id) {
   return cart.find(item => item.id === id);
 }
 
-// --- Cart UI Functions ---
-
 // Update cart badge count
 function updateCartBadge(cart) {
   const badge = document.getElementById('cart-count-badge');
@@ -95,7 +40,6 @@ function renderCartPanel(cart) {
   } else {
     cart.forEach(item => {
       sum += item.price * item.qty;
-      // Cart item row
       const row = document.createElement('div');
       row.className = 'cart-item-row';
       row.innerHTML = `
@@ -126,8 +70,6 @@ function closeCartPanel() {
   document.getElementById('cart-panel').classList.remove('open');
   document.getElementById('cart-panel-backdrop').style.display = 'none';
 }
-
-// --- Main Cart Logic ---
 
 // Add product to cart
 function addToCart(product) {
@@ -168,39 +110,42 @@ function handleCartPanelClick(e) {
 }
 
 // --- Initialization ---
-
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Attach Add to Cart to all product cards
+  // Attach Add to Cart to all product cards
   document.querySelectorAll('.product-card').forEach(card => {
-    // Get product info from card
     const btn = card.querySelector('.btn.btn-primary');
     if (!btn) return;
     btn.addEventListener('click', () => {
-      // Use card title, price, image, and a unique id (from data-id)
-      const title = card.querySelector('.card-title')?.textContent?.trim() || 'Product';
-      const priceText = card.querySelector('.price')?.textContent?.replace(/[^0-9.]/g, '') || '0';
-      const price = parseFloat(priceText) || 0;
+      const title = card.querySelector('.card-title')?.textContent?.trim();
+      const priceText = card.querySelector('.price')?.textContent?.replace(/[^0-9.]/g, '');
+      const price = parseFloat(priceText);
       const img = card.querySelector('.card-img-top')?.getAttribute('src') || '';
-      // Use data-id (guaranteed unique)
-      const id = card.getAttribute('data-id') || title.replace(/\s+/g, '-').toLowerCase();
+      const id = card.getAttribute('data-id') || (title ? title.replace(/\s+/g, '-').toLowerCase() : '');
+
+      // Only add to cart if title and price are valid
+      if (!title || isNaN(price)) {
+        alert('This product is not configured correctly.');
+        return;
+      }
+
       addToCart({ id, title, price, img });
     });
   });
 
-  // 2. Cart icon click opens cart
+  // Cart icon click opens cart
   document.getElementById('cart-icon-btn').addEventListener('click', openCartPanel);
   document.getElementById('cart-close-btn').addEventListener('click', closeCartPanel);
   document.getElementById('cart-panel-backdrop').addEventListener('click', closeCartPanel);
 
-  // 3. Cart panel actions (qty, remove)
+  // Cart panel actions (qty, remove)
   document.getElementById('cart-items-list').addEventListener('click', handleCartPanelClick);
 
-  // 4. Checkout button (demo)
+  // Checkout button (demo)
   document.getElementById('checkout-btn').addEventListener('click', () => {
     alert('Checkout is not implemented in this demo.');
   });
 
-  // 5. Initialize cart badge and panel
+  // Initialize cart badge and panel
   const cart = loadCart();
   updateCartBadge(cart);
   renderCartPanel(cart);
