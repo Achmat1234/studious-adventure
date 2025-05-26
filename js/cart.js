@@ -52,7 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // --- Cart System for Storefront ---
 // Language: JavaScript (ES6)
-// This script enables Add to Cart, cart panel, and persistent cart
 
 // --- Cart Data Model ---
 const CART_KEY = 'storefront_cart';
@@ -177,12 +176,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const btn = card.querySelector('.btn.btn-primary');
     if (!btn) return;
     btn.addEventListener('click', () => {
-      // Use card title, price, image, and a unique id (title as fallback)
+      // Use card title, price, image, and a unique id (from data-id)
       const title = card.querySelector('.card-title')?.textContent?.trim() || 'Product';
       const priceText = card.querySelector('.price')?.textContent?.replace(/[^0-9.]/g, '') || '0';
       const price = parseFloat(priceText) || 0;
       const img = card.querySelector('.card-img-top')?.getAttribute('src') || '';
-      // Use data-id or fallback to title
+      // Use data-id (guaranteed unique)
       const id = card.getAttribute('data-id') || title.replace(/\s+/g, '-').toLowerCase();
       addToCart({ id, title, price, img });
     });
