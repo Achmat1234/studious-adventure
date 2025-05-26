@@ -43,18 +43,18 @@ function renderCartPanel(cart) {
       const row = document.createElement('div');
       row.className = 'cart-item-row';
       row.innerHTML = `
-        <img src="${item.img || ''}" alt="${item.title}" class="cart-item-img" />
-        <div class="cart-item-info">
-          <div class="cart-item-title">${item.title}</div>
-          <div class="cart-item-qty">
-            <button aria-label="Decrease quantity" data-action="decrease" data-id="${item.id}">-</button>
-            <span>${item.qty}</span>
-            <button aria-label="Increase quantity" data-action="increase" data-id="${item.id}">+</button>
-            <span class="ms-2">$${(item.price * item.qty).toFixed(2)}</span>
-            <button class="cart-item-remove" aria-label="Remove item" data-action="remove" data-id="${item.id}">&times;</button>
-          </div>
-        </div>
-      `;
+  <img src="${item.img || ''}" alt="${item.title}" class="cart-item-img" />
+  <div class="cart-item-info">
+    <div class="cart-item-title">${item.title}</div>
+    <div class="cart-item-qty">
+      <button aria-label="Decrease quantity" data-action="decrease" data-id="${item.id}">-</button>
+      <span>${item.qty}</span>
+      <button aria-label="Increase quantity" data-action="increase" data-id="${item.id}">+</button>
+      <span class="ms-2">$${(item.price * item.qty).toFixed(2)}</span>
+      <button class="cart-item-remove" aria-label="Remove item" data-action="remove" data-id="${item.id}">&times;</button>
+    </div>
+  </div>
+`;
       list.appendChild(row);
     });
   }
