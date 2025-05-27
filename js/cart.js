@@ -42,7 +42,8 @@ function renderCartPanel(cart) {
       sum += item.price * item.qty;
       const row = document.createElement('div');
       row.className = 'cart-item-row';
-      row.innerHTML = `
+      // ...existing code...
+row.innerHTML = `
   <img src="${item.img || ''}" alt="${item.title}" class="cart-item-img" />
   <div class="cart-item-info">
     <div class="cart-item-title">${item.title}</div>
@@ -55,11 +56,9 @@ function renderCartPanel(cart) {
     </div>
   </div>
 `;
-      list.appendChild(row);
-    });
-  }
-  total.textContent = `R${sum.toFixed(2)}`;
-}
+// ...existing code...
+total.textContent = `R${sum.toFixed(2)}`;
+// ...existing code...
 
 // Open/close cart panel
 function openCartPanel() {
