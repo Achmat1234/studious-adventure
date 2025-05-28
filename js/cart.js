@@ -50,7 +50,7 @@ function renderCartPanel(cart) {
       <button aria-label="Decrease quantity" data-action="decrease" data-id="${item.id}">-</button>
       <span>${item.qty}</span>
       <button aria-label="Increase quantity" data-action="increase" data-id="${item.id}">+</button>
-      <span class="ms-2">R${(item.price * item.qty).toFixed(2)}</span>
+      <span class="ms-2">$${(item.price * item.qty).toFixed(2)}</span>
       <button class="cart-item-remove" aria-label="Remove item" data-action="remove" data-id="${item.id}">&times;</button>
     </div>
   </div>
@@ -58,7 +58,7 @@ function renderCartPanel(cart) {
       list.appendChild(row);
     });
   }
-  total.textContent = `R${sum.toFixed(2)}`;
+  total.textContent = `$${sum.toFixed(2)}`;
 }
 
 // Open/close cart panel
