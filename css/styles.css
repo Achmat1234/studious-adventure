@@ -97,7 +97,7 @@
 }
 
 .storefront-border {
-    border: 2px solid #dee2e6;
+    
     border-radius: 1.25rem;
     background: #000;
     box-shadow: 0 4px 24px rgba(0,0,0,0.04);
@@ -339,7 +339,7 @@ footer a:hover {
 
 /* --- Storefront Border Wrapper --- */
 .storefront-border {
-    border: 2px solid #dee2e6;
+    
     border-radius: 1.25rem;
     background: #000000;
     box-shadow: 0 4px 24px rgba(0,0,0,0.04);
