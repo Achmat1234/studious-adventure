@@ -23,14 +23,18 @@ document.addEventListener('DOMContentLoaded', function () {
   let currentIndex = 0;
 
   function updateCarousel() {
-    cards = carousel.querySelectorAll(cardSelector);
-    const visibleCards = getVisibleCards();
-    currentIndex = Math.max(0, Math.min(currentIndex, cards.length - visibleCards));
-    const offset = currentIndex * cardWidth;
-    carousel.style.transform = `translateX(-${offset}px)`;
-    leftBtn.style.visibility = currentIndex === 0 ? 'hidden' : 'visible';
-    rightBtn.style.visibility = (currentIndex + visibleCards) >= cards.length ? 'hidden' : 'visible';
-  }
+  cards = carousel.querySelectorAll(cardSelector);
+  const visibleCards = getVisibleCards();
+  // Clamp so last page is always full cards (or less if not enough)
+  currentIndex = Math.max(
+    0,
+    Math.min(currentIndex, Math.max(0, cards.length - visibleCards))
+  );
+  const offset = currentIndex * cardWidth;
+  carousel.style.transform = `translateX(-${offset}px)`;
+  leftBtn.style.visibility = currentIndex === 0 ? 'hidden' : 'visible';
+  rightBtn.style.visibility = (currentIndex + visibleCards) >= cards.length ? 'hidden' : 'visible';
+}
 
   leftBtn.addEventListener('click', () => {
     currentIndex -= getVisibleCards();
