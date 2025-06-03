@@ -11451,6 +11451,10 @@ html, body {
   box-sizing: border-box;
   /* ...existing code... */
 }
+
+#product-carousel-section {
+  background-color: #000 !important;
+}
 .product-carousel {
   display: flex !important;
   flex-direction: row !important;
@@ -11523,7 +11527,4 @@ html, body {
     max-width: 100vw;
     margin: 0 8px;
   }
-
-
-
 
