@@ -46,3 +46,44 @@ document.addEventListener('DOMContentLoaded', function () {
 
   updateCarousel();
 });
+
+// ...existing carousel JS...
+
+// --- Swipe support for carousel ---
+document.addEventListener('DOMContentLoaded', function () {
+  const carousel = document.getElementById('product-carousel');
+  const leftBtn = document.querySelector('.carousel-arrow.left');
+  const rightBtn = document.querySelector('.carousel-arrow.right');
+  if (!carousel) return;
+
+  let startX = 0;
+  let isTouching = false;
+
+  carousel.addEventListener('touchstart', function (e) {
+    if (e.touches.length === 1) {
+      startX = e.touches[0].clientX;
+      isTouching = true;
+    }
+  });
+
+  carousel.addEventListener('touchmove', function (e) {
+    // Prevent scrolling the page while swiping carousel
+    if (isTouching) e.preventDefault();
+  }, { passive: false });
+
+  carousel.addEventListener('touchend', function (e) {
+    if (!isTouching) return;
+    const endX = e.changedTouches[0].clientX;
+    const diffX = endX - startX;
+    if (Math.abs(diffX) > 40) { // Minimum swipe distance
+      if (diffX < 0) {
+        // Swipe left: next
+        rightBtn && rightBtn.click();
+      } else {
+        // Swipe right: prev
+        leftBtn && leftBtn.click();
+      }
+    }
+    isTouching = false;
+  });
+});
