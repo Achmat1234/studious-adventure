@@ -11521,6 +11521,12 @@ html, body {
 .carousel-arrow.right { right: 0; }
 .carousel-arrow:active { background: #eee; }
 
+.card.product-card,
+.product-card,
+.product-carousel .product-card {
+  background: transparent !important;
+  box-shadow: none !important;
+}
 
 @media (max-width: 1200px) {
   .storefront-border {
