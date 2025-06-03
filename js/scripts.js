@@ -23,18 +23,18 @@ document.addEventListener('DOMContentLoaded', function () {
   let currentIndex = 0;
 
   function updateCarousel() {
-  cards = carousel.querySelectorAll(cardSelector);
-  const visibleCards = getVisibleCards();
-  // Clamp so last page is always full cards (or less if not enough)
-  currentIndex = Math.max(
-    0,
-    Math.min(currentIndex, Math.max(0, cards.length - visibleCards))
-  );
-  const offset = currentIndex * cardWidth;
-  carousel.style.transform = `translateX(-${offset}px)`;
-  leftBtn.style.visibility = currentIndex === 0 ? 'hidden' : 'visible';
-  rightBtn.style.visibility = (currentIndex + visibleCards) >= cards.length ? 'hidden' : 'visible';
-}
+    cards = carousel.querySelectorAll(cardSelector);
+    const visibleCards = getVisibleCards();
+    // Clamp so last page is always full cards (or less if not enough)
+    currentIndex = Math.max(
+      0,
+      Math.min(currentIndex, Math.max(0, cards.length - visibleCards))
+    );
+    const offset = currentIndex * cardWidth;
+    carousel.style.transform = `translateX(-${offset}px)`;
+    leftBtn.style.visibility = currentIndex === 0 ? 'hidden' : 'visible';
+    rightBtn.style.visibility = (currentIndex + visibleCards) >= cards.length ? 'hidden' : 'visible';
+  }
 
   leftBtn.addEventListener('click', () => {
     currentIndex -= getVisibleCards();
@@ -47,6 +47,35 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   window.addEventListener('resize', updateCarousel);
+
+  // --- Swipe support for carousel ---
+  let startX = 0;
+  let isTouching = false;
+
+  carousel.addEventListener('touchstart', function (e) {
+    if (e.touches.length === 1) {
+      startX = e.touches[0].clientX;
+      isTouching = true;
+    }
+  });
+
+  carousel.addEventListener('touchmove', function (e) {
+    if (isTouching) e.preventDefault();
+  }, { passive: false });
+
+  carousel.addEventListener('touchend', function (e) {
+    if (!isTouching) return;
+    const endX = e.changedTouches[0].clientX;
+    const diffX = endX - startX;
+    if (Math.abs(diffX) > 40) { // Minimum swipe distance
+      if (diffX < 0) {
+        rightBtn && rightBtn.click();
+      } else {
+        leftBtn && leftBtn.click();
+      }
+    }
+    isTouching = false;
+  });
 
   updateCarousel();
 });
